@@ -1,0 +1,31 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+	FOOT NUMBER(2) := '&Foot';
+	INCHES NUMBER(2) := '&Inches';
+	POUNDS NUMBER(5,2) := '&Pounds';
+	OUNCES NUMBER(5,2) := '&Ounces';
+	HEIGHT NUMBER := ((FOOT + (INCHES/12.0)) *0.3048);
+	WEIGHT NUMBER := (POUNDS + OUNCES/16.0)/2.2;
+	BMI NUMBER := WEIGHT/(HEIGHT * HEIGHT);
+
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('You are ' || FOOT || '"' || INCHES || ' tall!');
+	DBMS_OUTPUT.PUT_LINE('You weigh ' || POUNDS || '.' || OUNCES || ' pounds!');
+	DBMS_OUTPUT.PUT_LINE('Body Type BMI Index');
+	DBMS_OUTPUT.PUT_LINE('Underweight <= 18.5');
+	DBMS_OUTPUT.PUT_LINE('Normal Weight 18.5 - 24.9');
+	DBMS_OUTPUT.PUT_LINE('Overweight 25.0 - 29.9');
+	DBMS_OUTPUT.PUT_LINE('Obese > 30.0');
+	DBMS_OUTPUT.PUT_LINE('Your BMI is: ' ||  BMI);
+
+
+	CASE 
+		WHEN BMI <= 18.5 THEN DBMS_OUTPUT.PUT_LINE('You are underweight');
+		WHEN BMI > 18.5 AND BMI < 24.9 THEN DBMS_OUTPUT.PUT_LINE('You are normal weight');
+		WHEN BMI > 25.0 AND BMI < 29.9 THEN DBMS_OUTPUT.PUT_LINE('You are overweight');
+		WHEN BMI >= 30.0 THEN DBMS_OUTPUT.PUT_LINE('You are obese');
+	END CASE;
+	
+END;
+/
