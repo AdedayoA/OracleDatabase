@@ -58,7 +58,8 @@ ADD CONSTRAINT CITY_ID_FK Foreign Key(CountryCode) References COUNTRY(Code);
 -- ORDER BY:  `ID`
 SELECT NAME, District, Population
 FROM CITY
-WHERE CountryCode LIKE 'AFG';
+WHERE CountryCode LIKE 'USA'
+ORDER BY District;
 INSERT INTO CITY VALUES (1,'Kabul','AFG','Kabol',1780000);
 INSERT INTO CITY VALUES (2,'Qandahar','AFG','Qandahar',237500);
 INSERT INTO CITY VALUES (3,'Herat','AFG','Herat',186800);
@@ -4163,6 +4164,8 @@ CREATE TABLE COUNTRY (
   Code2 CHAR(2) DEFAULT '',
   CONSTRAINT Country_Code_PK Primary Key(Code));
 
+SELECT Name, GovernmentForm, HeadOfState
+FROM COUNTRY;
 -- ORDER BY:  `Code`
 
 INSERT INTO COUNTRY VALUES ('ABW','Aruba','North America','Caribbean',193.00,NULL,103000,78.4,828.00,793.00,'Aruba','Nonmetropolitan Territory of The Netherlands','Beatrix',129,'AW');
