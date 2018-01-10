@@ -1,3 +1,4 @@
+--SET WRAP OFF-
 /\ SELECT Statements /\
 
 --Retrieves all the information from the country table
@@ -29,3 +30,21 @@ FROM
 ( SELECT Name, Continent, Region FROM Country WHERE Continent = 'Europe') 
 where ROWNUM <= 5;
 
+/\ SELECTing Columns /\
+--Retrieves the first 5 rows with all the information about a country that is ordered by the code
+SELECT *
+FROM
+( SELECT * FROM Country ORDER BY Code ) 
+where ROWNUM <= 5;
+
+--Retrieves the first 5 rows with the name code, region, and population about a country that is ordered by the code
+SELECT *
+FROM
+( SELECT Name, Code, Region, Population FROM Country ORDER BY Code ) 
+where ROWNUM <= 5;
+
+--Retrieves the first 5 rows with the name code, region, and population about a country that is ordered by the code, all with aliases
+SELECT *
+FROM
+( SELECT Name AS "Country", Code AS "ISO", Region, Population AS "Pop" FROM Country ORDER BY Code ) 
+where ROWNUM <= 5;
