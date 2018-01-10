@@ -1,4 +1,5 @@
---SET WRAP OFF-
+--SET WRAP OFF
+--SET linesize 150
 /\ SELECT Statements /\
 
 --Retrieves all the information from the country table
@@ -43,8 +44,10 @@ FROM
 ( SELECT Name, Code, Region, Population FROM Country ORDER BY Code ) 
 where ROWNUM <= 5;
 
---Retrieves the first 5 rows with the name code, region, and population about a country that is ordered by the code, all with aliases
+--Retrieves the first 5 rows with the name code, region, and population in a common format about a country that is ordered by the code, all with aliases
 SELECT *
 FROM
-( SELECT Name AS "Country", Code AS "ISO", Region, Population AS "Pop" FROM Country ORDER BY Code ) 
+( SELECT Name AS "Country", Code AS "ISO", Region, TO_CHAR( Population, '999,999,999,999') AS "Population"
+ FROM Country ORDER BY Code ) 
 where ROWNUM <= 5;
+
