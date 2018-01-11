@@ -1,17 +1,16 @@
 -- Table structure for table album
 
-DROP TABLE IF EXISTS album;
+DROP TABLE  album;
 CREATE TABLE album (
   id NUMBER PRIMARY KEY,
   title VARCHAR2(50),
   artist VARCHAR2(50),
   label VARCHAR2(50),
-  released VARCHAR2(50)
-);
+  released DATE);
 
 -- Table structure for table track
 
-DROP TABLE IF EXISTS track;
+DROP TABLE track;
 CREATE TABLE track (
   id NUMBER PRIMARY KEY,
   album_id NUMBER,
@@ -21,14 +20,13 @@ CREATE TABLE track (
 );
 
 -- Insert data for table album
-
-INSERT INTO album (id, title, artist, label, released) VALUES (1,'Two Men with the Blues','Willie Nelson and Wynton Marsalis','Blue Note','2008-07-08');
-INSERT INTO album (id, title, artist, label, released) VALUES (11,'Hendrix in the West','Jimi Hendrix','Polydor','1972-01-00');
-INSERT INTO album (id, title, artist, label, released) VALUES (12,'Rubber Soul','The Beatles','Parlophone','1965-12-03');
-INSERT INTO album (id, title, artist, label, released) VALUES (13,'Birds of Fire','Mahavishnu Orchestra','Columbia','1973-03-00');
-INSERT INTO album (id, title, artist, label, released) VALUES (16,'Live And','Johnny Winter','Columbia','1971-05-00');
-INSERT INTO album (id, title, artist, label, released) VALUES (17,'Apostrophe','Frank Zappa','DiscReet','1974-04-22');
-INSERT INTO album (id, title, artist, label, released) VALUES (18,'Kind of Blue','Miles Davis','Columbia','1959-08-17');
+INSERT INTO album (id, title, artist, label, released) VALUES (1,'Two Men with the Blues','Willie Nelson and Wynton Marsalis','Blue Note','08-JUL-2008');
+INSERT INTO album (id, title, artist, label, released) VALUES (11,'Hendrix in the West','Jimi Hendrix','Polydor','01-JAN-1972');
+INSERT INTO album (id, title, artist, label, released) VALUES (12,'Rubber Soul','The Beatles','Parlophone','03-DEC-1965');
+INSERT INTO album (id, title, artist, label, released) VALUES (13,'Birds of Fire','Mahavishnu Orchestra','Columbia','01-MAR-1973');
+INSERT INTO album (id, title, artist, label, released) VALUES (16,'Live And','Johnny Winter','Columbia','01-MAY-1971');
+INSERT INTO album (id, title, artist, label, released) VALUES (17,'Apostrophe','Frank Zappa','DiscReet','22-APR-1974');
+INSERT INTO album (id, title, artist, label, released) VALUES (18,'Kind of Blue','Miles Davis','Columbia','17-AUG-1959');
 
 -- Insert data for table track
 
