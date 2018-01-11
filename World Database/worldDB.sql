@@ -1,65 +1,15 @@
--- MySQL dump 10.13  Distrib 5.1.51, for pc-linux-gnu (i686)
---
--- Host: 127.0.0.1    Database: world
--- ------------------------------------------------------
--- Server version       5.1.51-debug-log
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES latin1 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-DROP SCHEMA IF EXISTS world;
-CREATE SCHEMA world;
-USE world;
-SET AUTOCOMMIT=0;
-
---
 -- Table structure for table CITY
---
 
 DROP TABLE IF EXISTS CITY;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE CITY (
-  `ID` NUMBER(11) NOT NULL AUTO_INCREMENT,
-  `Name` CHAR(35) NOT NULL DEFAULT '',
-  `CountryCode` CHAR(3) NOT NULL DEFAULT '',
-  `District` CHAR(20) NOT NULL DEFAULT '',
-  `Population` NUMBER(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`),
-  KEY `CountryCode` (`CountryCode`),
-  CONSTRANUMBER `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES COUNTRY (`Code`)
-) ENGINE=InnoDB AUTO_INCREMENT=4080 DEFAULT CHARSET=latin1;
-
 CREATE TABLE CITY (
   ID NUMBER(11),
   Name CHAR(35),
   CountryCode CHAR(3),
   District CHAR(20),
   Population NUMBER(11),
-  CONSTRAINT NUMBER CITY_ID_PK Primary Key(ID),
-  CONSTRANUMBER CITY_ID_FK Foreign Key(CountryCode) References COUNTRY(Code)
-);
+  CONSTRAINT CITY_ID_PK Primary Key(ID),
+  CONSTRAINT CITY_ID_FK Foreign Key(CountryCode) References COUNTRY(Code));
 
-ALTER TABLE CITY
-ADD CONSTRAINT CITY_ID_FK Foreign Key(CountryCode) References COUNTRY(Code);
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table CITY
---
--- ORDER BY:  `ID`
-SELECT NAME, District, Population
-FROM CITY
-WHERE CountryCode LIKE 'USA'
-ORDER BY District;
 INSERT INTO CITY VALUES (1,'Kabul','AFG','Kabol',1780000);
 INSERT INTO CITY VALUES (2,'Qandahar','AFG','Qandahar',237500);
 INSERT INTO CITY VALUES (3,'Herat','AFG','Herat',186800);
@@ -4140,12 +4090,9 @@ INSERT INTO CITY VALUES (4077,'Jabaliya','PSE','North Gaza',113901);
 INSERT INTO CITY VALUES (4078,'Nablus','PSE','Nablus',100231);
 INSERT INTO CITY VALUES (4079,'Rafah','PSE','Rafah',92020);
 COMMIT;
---
+
 -- Table structure for table COUNTRY
---
-
 DROP TABLE IF EXISTS COUNTRY;
-
 CREATE TABLE COUNTRY (
   Code CHAR(3) DEFAULT '',
   Name CHAR(52) DEFAULT '',
@@ -4163,10 +4110,6 @@ CREATE TABLE COUNTRY (
   Capital NUMBER(11) DEFAULT NULL,
   Code2 CHAR(2) DEFAULT '',
   CONSTRAINT Country_Code_PK Primary Key(Code));
-
-SELECT Name, GovernmentForm, HeadOfState
-FROM COUNTRY;
--- ORDER BY:  `Code`
 
 INSERT INTO COUNTRY VALUES ('ABW','Aruba','North America','Caribbean',193.00,NULL,103000,78.4,828.00,793.00,'Aruba','Nonmetropolitan Territory of The Netherlands','Beatrix',129,'AW');
 INSERT INTO COUNTRY VALUES ('AFG','Afghanistan','Asia','Southern and Central Asia',652090.00,1919,22720000,45.9,5976.00,NULL,'Afganistan/Afqanestan','Islamic Emirate','Mohammad Omar',1,'AF');
@@ -4408,22 +4351,9 @@ INSERT INTO COUNTRY VALUES ('ZAF','South Africa','Africa','Southern Africa',1221
 INSERT INTO COUNTRY VALUES ('ZMB','Zambia','Africa','Eastern Africa',752618.00,1964,9169000,37.2,3377.00,3922.00,'Zambia','Republic','Frederick Chiluba',3162,'ZM');
 INSERT INTO COUNTRY VALUES ('ZWE','Zimbabwe','Africa','Eastern Africa',390757.00,1980,11669000,37.8,5951.00,8670.00,'Zimbabwe','Republic','Robert G. Mugabe',4068,'ZW');
 COMMIT;
---
+
 -- Table structure for table COUNTRYLANGUAGE
---
-
 DROP TABLE IF EXISTS COUNTRYLANGUAGE;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE COUNTRYLANGUAGE (
-  `CountryCode` CHAR(3) NOT NULL DEFAULT '',
-  `Language` CHAR(30) NOT NULL DEFAULT '',
-  `IsOfficial` enum('T','F') NOT NULL DEFAULT 'F',
-  `Percentage` FLOAT(4,1) NOT NULL DEFAULT '0.0',
-  PRIMARY KEY (`CountryCode`,`Language`),
-  KEY `CountryCode` (`CountryCode`),
-  CONSTRANUMBER `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES COUNTRY (`Code`)
-
   CREATE TABLE COUNTRYLANGUAGE (
   CountryCode CHAR(3) DEFAULT '',
   Language CHAR(30) DEFAULT '',
@@ -4431,14 +4361,6 @@ CREATE TABLE COUNTRYLANGUAGE (
   Percentage NUMBER(4,1) DEFAULT '0.0',
   CONSTRAINT CountryCode_Language_PK PRIMARY KEY (CountryCode),
   CONSTRAINT CountryLanguage_FK FOREIGN KEY (CountryCode) REFERENCES COUNTRY (Code));
-
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table COUNTRYLANGUAGE
---
--- ORDER BY:  `CountryCode`,`Language`
 
 INSERT INTO COUNTRYLANGUAGE VALUES ('ABW','Dutch','T',5.3);
 INSERT INTO COUNTRYLANGUAGE VALUES ('ABW','English','F',9.5);
@@ -5425,17 +5347,3 @@ INSERT INTO COUNTRYLANGUAGE VALUES ('ZWE','Ndebele','F',16.2);
 INSERT INTO COUNTRYLANGUAGE VALUES ('ZWE','Nyanja','F',2.2);
 INSERT INTO COUNTRYLANGUAGE VALUES ('ZWE','Shona','F',72.1);
 COMMIT;
-
-SET AUTOCOMMIT=1;
-
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2010-09-30 11:01:37
