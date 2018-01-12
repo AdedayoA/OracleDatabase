@@ -51,3 +51,10 @@ FROM
  FROM Country ORDER BY Code ) 
 where ROWNUM <= 5;
 
+/\ Intserting Rows /\
+
+SELECT * FROM Customer;
+INSERT INTO Customer (name, address, city, state, zip) VALUES ('Fred Flintstone', '123 Cobblestone Way', 'Bedrock', 'CA', '91234');
+SELECT * FROM Customer;
+INSERT INTO Customer (name, city, state) VALUES ('Jimi Hendrix', 'Renton', 'WA');
+
