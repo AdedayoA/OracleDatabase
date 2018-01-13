@@ -51,10 +51,17 @@ FROM
  FROM Country ORDER BY Code ) 
 where ROWNUM <= 5;
 
-/\ Intserting Rows /\
-
+/\ INSERTing Data /\
 SELECT * FROM Customer;
-INSERT INTO Customer (name, address, city, state, zip) VALUES ('Fred Flintstone', '123 Cobblestone Way', 'Bedrock', 'CA', '91234');
+INSERT INTO Customer VALUES (Customer_seq.NEXTVAL, 'Fred Flintstone', '123 Cobblestone Way', 'Bedrock', 'CA', '91234');
 SELECT * FROM Customer;
-INSERT INTO Customer (name, city, state) VALUES ('Jimi Hendrix', 'Renton', 'WA');
+INSERT INTO Customer (id, name, city, state) VALUES (Customer_seq.NEXTVAL, 'Jimi Hendrix', 'Renton', 'WA');
+SELECT * FROM Customer;
 
+CREATE SEQUENCE Customer_seq
+INCREMENT BY 1
+START WITH 4
+NOMAXVALUE
+NOMINVALUE
+NOCYCLE
+NOCACHE;
