@@ -66,3 +66,9 @@ UPDATE Customer SET Address = '2603 S Washington St', Zip = '98056' WHERE id = 5
 SELECT * FROM Customer;
 UPDATE Customer SET Address = NULL, Zip = NULL WHERE id = 5;
 SELECT * FROM Customer;
+
+/\ DELETEing Data /\
+SELECT * FROM Customer WHERE id = 4;
+DELETE from Customer WHERE id = 4;
+DELETE from Customer WHERE id = 5;
+SELECT * FROM Customer;
