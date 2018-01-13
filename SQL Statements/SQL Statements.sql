@@ -1,5 +1,5 @@
 --SET WRAP OFF
---SET linesize 150
+--SET linesize 200
 /\ SELECT Statements /\
 
 --Retrieves all the information from the country table
@@ -53,15 +53,16 @@ where ROWNUM <= 5;
 
 /\ INSERTing Data /\
 SELECT * FROM Customer;
-INSERT INTO Customer VALUES (Customer_seq.NEXTVAL, 'Fred Flintstone', '123 Cobblestone Way', 'Bedrock', 'CA', '91234');
+INSERT INTO Customer VALUES (4, 'Fred Flintstone', '123 Cobblestone Way', 'Bedrock', 'CA', '91234');
 SELECT * FROM Customer;
-INSERT INTO Customer (id, name, city, state) VALUES (Customer_seq.NEXTVAL, 'Jimi Hendrix', 'Renton', 'WA');
+INSERT INTO Customer (id, name, city, state) VALUES (5, 'Jimi Hendrix', 'Renton', 'WA');
 SELECT * FROM Customer;
 
-CREATE SEQUENCE Customer_seq
-INCREMENT BY 1
-START WITH 4
-NOMAXVALUE
-NOMINVALUE
-NOCYCLE
-NOCACHE;
+/\ UPDATEing Data /\
+SELECT * FROM Customer;
+UPDATE Customer SET Address = '123 Music Avenue', Zip = '98056' WHERE id = 5;
+SELECT * FROM Customer;
+UPDATE Customer SET Address = '2603 S Washington St', Zip = '98056' WHERE id = 5;
+SELECT * FROM Customer;
+UPDATE Customer SET Address = NULL, Zip = NULL WHERE id = 5;
+SELECT * FROM Customer;
