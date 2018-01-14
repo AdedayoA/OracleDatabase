@@ -1,6 +1,6 @@
 -- Table structure for table CITY
 
-DROP TABLE IF EXISTS CITY;
+DROP TABLE CITY;
 CREATE TABLE CITY (
   ID NUMBER(11),
   Name CHAR(35),
@@ -8,7 +8,8 @@ CREATE TABLE CITY (
   District CHAR(20),
   Population NUMBER(11),
   CONSTRAINT CITY_ID_PK Primary Key(ID),
-  CONSTRAINT CITY_ID_FK Foreign Key(CountryCode) References COUNTRY(Code));
+  CONSTRAINT CITY_ID_FK Foreign Key(CountryCode) References COUNTRY(Code)
+);
 
 INSERT INTO CITY VALUES (1,'Kabul','AFG','Kabol',1780000);
 INSERT INTO CITY VALUES (2,'Qandahar','AFG','Qandahar',237500);
