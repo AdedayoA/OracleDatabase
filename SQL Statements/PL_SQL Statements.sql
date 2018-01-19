@@ -26,3 +26,20 @@ BEGIN
 	END LOOP;
 END;
 /
+
+-- Retrieve the Track Names of an album
+SELECT Name, GovernmentForm, HeadOfState
+FROM COUNTRY;
+
+-- Retrieve the number of tracks on the album id
+DECLARE
+	CURSOR cur_tracks (cur_id NUMBER) IS
+	SELECT *
+	FROM track
+	WHERE album_id = cur_id;
+BEGIN
+	FOR record_track IN cur_tracks(&album_id) LOOP
+		DBMS_OUTPUT.PUT_LINE('Track #' || record_track.track_number || ' is: ' || record_track.title);
+	END LOOP;
+END;
+/
